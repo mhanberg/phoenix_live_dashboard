@@ -18,12 +18,12 @@ defmodule Phoenix.LiveDashboard.TableComponentTest do
 
   defp row_fetcher(params, node) do
     send(self(), {:row_fetcher, params, node})
-    {[[foo: 1, bar: 2, baz: 3], [foo: 4, bar: 5, baz: 6]], 2}
+    {:ok, {[[foo: 1, bar: 2, baz: 3], [foo: 4, bar: 5, baz: 6]], 2}}
   end
 
   defp row_fetcher(params, node, state) do
     send(self(), {:row_fetcher, params, node, state})
-    {[[foo: 1, bar: 2, baz: 3], [foo: 4, bar: 5, baz: 6]], 2, state + 1}
+    {:ok, {[[foo: 1, bar: 2, baz: 3], [foo: 4, bar: 5, baz: 6]], 2, state + 1}}
   end
 
   defp default_assigns(assigns \\ []) do
@@ -185,6 +185,22 @@ defmodule Phoenix.LiveDashboard.TableComponentTest do
       result = render_table(row_attrs: row_attrs)
       assert result =~ "<tr class=\"row-attrs-1\">"
       assert result =~ "<tr class=\"row-attrs-4\">"
+    end
+
+    test "renders an error banner when the row fetcher returns an error tuple" do
+      fetcher = fn _params, _node -> {:error, "could not fetch rows"} end
+      result = render_table(row_fetcher: fetcher)
+
+      assert result =~ ~s|class="alert alert-danger"|
+      assert result =~ "could not fetch rows"
+    end
+
+    test "renders an error banner when a stateful row fetcher returns an error tuple" do
+      fetcher = fn _params, _node, _state -> {:error, "stateful failure"} end
+      result = render_table(row_fetcher: {fetcher, 0})
+
+      assert result =~ ~s|class="alert alert-danger"|
+      assert result =~ "stateful failure"
     end
   end
 

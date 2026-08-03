@@ -42,7 +42,7 @@ defmodule Phoenix.LiveDashboard.SocketsPage do
   defp fetch_sockets(params, node) do
     %{search: search, sort_by: sort_by, sort_dir: sort_dir, limit: limit} = params
 
-    SystemInfo.fetch_sockets(node, search, sort_by, sort_dir, limit)
+    {:ok, SystemInfo.fetch_sockets(node, search, sort_by, sort_dir, limit)}
   end
 
   defp row_attrs(socket) do
