@@ -85,7 +85,11 @@ end
 defmodule Phoenix.LiveDashboardTest.FakeOldEctoExtras do
   defmodule Query do
     def info do
-      %{title: "Fake old query", columns: [%{name: :value, type: :integer}], default_args: [threshold: 10]}
+      %{
+        title: "Fake old query",
+        columns: [%{name: :value, type: :integer}],
+        default_args: [threshold: 10]
+      }
     end
 
     def query(_args \\ []), do: "SELECT 1"
@@ -102,8 +106,18 @@ defmodule Phoenix.LiveDashboardTest.FakeNewEctoExtras do
         title: "Fake new query",
         columns: [%{name: :threshold, type: :integer}, %{name: :enabled, type: :boolean}],
         parameters: [
-          %{name: :threshold, type: :integer, default: 10, description: "minimum number of calls"},
-          %{name: :enabled, type: :boolean, default: true, description: "whether the check is enabled"}
+          %{
+            name: :threshold,
+            type: :integer,
+            default: 10,
+            description: "minimum number of calls"
+          },
+          %{
+            name: :enabled,
+            type: :boolean,
+            default: true,
+            description: "whether the check is enabled"
+          }
         ]
       }
     end
