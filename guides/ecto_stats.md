@@ -104,15 +104,6 @@ live_dashboard "/dashboard",
 
 See the [`ecto_sqlite3_extras` documentation](https://github.com/orsinium-labs/ecto_sqlite3_extras) for available options.
 
-### Editing query parameters from the dashboard
-
-A query can declare a `parameters` list in its info spec — one map per editable parameter, with `name`, `type`, and `default` keys, plus an optional `description`:
-
-```elixir
-parameters: [
-  %{name: :threshold, type: :string, default: "500 milliseconds", description: "minimum duration for a query to be considered slow"},
-  %{name: :min_scans, type: :integer, default: 50}
-]
 ```
 
 ### Overriding the info module
