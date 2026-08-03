@@ -18,12 +18,12 @@ defmodule Phoenix.LiveDashboard.TableComponentTest do
 
   defp row_fetcher(params, node) do
     send(self(), {:row_fetcher, params, node})
-    {:ok, {[[foo: 1, bar: 2, baz: 3], [foo: 4, bar: 5, baz: 6]], 2}}
+    {[[foo: 1, bar: 2, baz: 3], [foo: 4, bar: 5, baz: 6]], 2}
   end
 
   defp row_fetcher(params, node, state) do
     send(self(), {:row_fetcher, params, node, state})
-    {:ok, {[[foo: 1, bar: 2, baz: 3], [foo: 4, bar: 5, baz: 6]], 2, state + 1}}
+    {[[foo: 1, bar: 2, baz: 3], [foo: 4, bar: 5, baz: 6]], 2, state + 1}
   end
 
   defp default_assigns(assigns \\ []) do

@@ -49,7 +49,7 @@ defmodule Phoenix.LiveDashboard.PageBuilder do
           # Here goes the code that goes through all ETS tables, searches
           # (if not nil), sorts, and limits them.
           #
-          # It must return `{:ok, {entries, total}}` where entries is a list
+          # It must return `{entries, total}` where entries is a list
           # with the current entries (up to limit) and total is an integer with
           # the total amount of entries, or `{:error, message}` on failure.
           # ...
@@ -364,15 +364,15 @@ defmodule Phoenix.LiveDashboard.PageBuilder do
     required: true,
     doc: """
     A function which receives the params and the node and returns either
-    `{:ok, {rows, total}}` on success or `{:error, message}` on failure:
-    `(params(), node() -> {:ok, {list(), integer() | binary()}} | {:error, binary()})`.
+    `{rows, total}` on success or `{:error, message}` on failure:
+    `(params(), node() -> {list(), integer() | binary()} | {:error, binary()})`.
     On failure the table renders `message` in an error banner in place of the
     rows; catching exceptions is the caller's responsibility.
     Optionally, if the function needs to keep a state, it can be defined as a tuple
     where the first element is a function and the second is the initial state.
     In this case, the function will receive the state as third argument and must return
-    `{:ok, {rows, total, new_state}}` with the new state for the following call:
-    `{(params(), node(), term() -> {:ok, {list(), integer() | binary(), term()}} | {:error, binary()}), term()}`
+    `{rows, total, new_state}` with the new state for the following call:
+    `{(params(), node(), term() -> {list(), integer() | binary(), term()} | {:error, binary()}), term()}`
     """
 
   attr :rows_name, :string,

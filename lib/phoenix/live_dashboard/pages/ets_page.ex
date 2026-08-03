@@ -36,7 +36,7 @@ defmodule Phoenix.LiveDashboard.EtsPage do
   defp fetch_ets(params, node) do
     %{search: search, sort_by: sort_by, sort_dir: sort_dir, limit: limit} = params
 
-    {:ok, SystemInfo.fetch_ets(node, search, sort_by, sort_dir, limit)}
+    SystemInfo.fetch_ets(node, search, sort_by, sort_dir, limit)
   end
 
   defp row_attrs(table) do

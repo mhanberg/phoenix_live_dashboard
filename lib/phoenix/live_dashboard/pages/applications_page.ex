@@ -31,7 +31,7 @@ defmodule Phoenix.LiveDashboard.ApplicationsPage do
   defp fetch_applications(params, node) do
     %{search: search, sort_by: sort_by, sort_dir: sort_dir, limit: limit} = params
 
-    {:ok, SystemInfo.fetch_applications(node, search, sort_by, sort_dir, limit)}
+    SystemInfo.fetch_applications(node, search, sort_by, sort_dir, limit)
   end
 
   defp row_attrs(application) do

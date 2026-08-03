@@ -55,7 +55,7 @@ defmodule Phoenix.LiveDashboard.MemoryAllocatorsPage do
 
     allocs = Enum.sort_by(allocs, fn item -> item[sort_by] end, sort_dir)
 
-    {:ok, {allocs, length(allocs), state}}
+    {allocs, length(allocs), state}
   end
 
   @impl true

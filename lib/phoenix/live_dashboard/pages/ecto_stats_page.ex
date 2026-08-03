@@ -465,7 +465,7 @@ defmodule Phoenix.LiveDashboard.EctoStatsPage do
           left >= right
       end)
 
-    {:ok, {sorted, length(rows)}}
+    {sorted, length(rows)}
   rescue
     error -> {:error, Exception.message(error)}
   catch

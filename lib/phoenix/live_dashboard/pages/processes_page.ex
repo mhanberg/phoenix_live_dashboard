@@ -40,7 +40,7 @@ defmodule Phoenix.LiveDashboard.ProcessesPage do
     {processes, count, state} =
       SystemInfo.fetch_processes(node, search, sort_by, sort_dir, limit, state)
 
-    {:ok, {processes, count, state}}
+    {processes, count, state}
   end
 
   defp row_attrs(process) do
